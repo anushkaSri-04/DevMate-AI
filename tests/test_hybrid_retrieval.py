@@ -1,107 +1,109 @@
-from devmate.clients.github_client import GitHubClient
 
-from devmate.services.source_code import (
-    retrieve_python_source_files,
-)
+from unittest.mock import Mock, patch
 
-from devmate.services.repository_code_analysis import (
-    analyze_repository_code,
-)
-
-from devmate.services.hybrid_retrieval import (
-    HybridRetriever,
-)
-
-from devmate.tools.repository_tools import (
-    fetch_repository_snapshot,
-)
-
-
-OWNER = "anushkaSri-04"
-REPO = "DevMate-AI"
+from devmate.services.hybrid_retrieval import HybridRetriever
 
 
 def test_hybrid_retrieval():
+    repository = "test-owner/test-repo"
 
-    github = GitHubClient()
+    source_files = [
+        {
+            "file": "src/github_client.py",
+            "content": (
+                "def get_issues():\n"
+                "    return ['issue-1']\n"
+            ),
+        }
+    ]
 
-    try:
-        # 1. Fetch repository snapshot.
-        snapshot = fetch_repository_snapshot(
-            github,
-            OWNER,
-            REPO,
+    lexical_context = {
+        "file": "src/github_client.py",
+        "start_line": 1,
+        "end_line": 2,
+        "symbol": "get_issues",
+        "type": "function",
+        "code": (
+            "def get_issues():\n"
+            "    return ['issue-1']"
+        ),
+    }
+
+    semantic_match = {
+        "id": "chunk-1",
+        "metadata": {
+            "file": "src/github_client.py",
+            "start_line": 1,
+            "end_line": 2,
+            "symbol": "get_issues",
+        },
+        "similarity": 0.95,
+        "distance": 0.05,
+    }
+
+    embedding_service = Mock()
+    embedding_service.embed_query.return_value = [0.1, 0.2, 0.3]
+
+    vector_store = Mock()
+    vector_store.search.return_value = [semantic_match]
+
+    retriever = HybridRetriever(
+        embedding_service=embedding_service,
+        vector_store=vector_store,
+    )
+
+    with (
+        patch(
+            "devmate.services.hybrid_retrieval.build_context_package"
+        ) as mock_lexical,
+        patch(
+            "devmate.services.hybrid_retrieval.extract_source_context"
+        ) as mock_source,
+    ):
+        mock_lexical.return_value = {
+            "code_context": [lexical_context],
+            "related_files": [],
+        }
+
+        mock_source.return_value = lexical_context.copy()
+
+        result = retriever.retrieve(
+            analysis={"repository": repository},
+            source_files=source_files,
+            query="How are GitHub issues retrieved?",
+            repository=repository,
+            max_contexts=5,
+            semantic_top_k=10,
         )
 
-        # 2. Retrieve Python source files.
-        source_result = retrieve_python_source_files(
-            github,
-            OWNER,
-            REPO,
-            snapshot,
-        )
+    assert result["total_contexts"] > 0
+    assert result["lexical_results"] == 1
+    assert result["semantic_results"] == 1
+    assert result["total_candidates"] == 1
+    assert result["retrieval_method"] == "hybrid_rrf"
+    assert result["insufficient_context"] is False
 
-        source_files = source_result["files"]
+    context = result["contexts"][0]
 
-        # 3. Generate AST and cross-file analysis.
-        analysis = analyze_repository_code(
-            github,
-            OWNER,
-            REPO,
-            snapshot,
-        )
+    assert set(context["retrieval_sources"]) == {
+        "lexical",
+        "semantic",
+    }
 
-        # 4. Initialize hybrid retriever.
-        retriever = HybridRetriever()
+    assert context["semantic_similarity"] == 0.95
 
-        # 5. Test natural-language questions.
-        queries = [
-            "How does DevMate retrieve GitHub issues?",
-            "Where is GitHub authentication handled?",
-            "How does the repository indexer generate embeddings?",
-        ]
+    expected_rrf_score = (1 / 61) + (1 / 61)
 
-        for query in queries:
+    assert abs(
+        context["rrf_score"] - expected_rrf_score
+    ) < 1e-9
 
-            print("\n" + "=" * 65)
-            print("QUERY:", query)
-            print("=" * 65)
+    embedding_service.embed_query.assert_called_once_with(
+        "How are GitHub issues retrieved?"
+    )
 
-            result = retriever.retrieve(
-                analysis=analysis,
-                source_files=source_files,
-                query=query,
-                repository=f"{OWNER}/{REPO}",
-                max_contexts=5,
-                semantic_top_k=10,
-            )
-
-            print("\nLEXICAL RESULTS:", result["lexical_results"])
-            print("SEMANTIC RESULTS:", result["semantic_results"])
-            print("TOTAL CANDIDATES:", result["total_candidates"])
-
-            print("\nTOP RETRIEVED CONTEXTS:")
-
-            for index, context in enumerate(
-                result["contexts"],
-                start=1,
-            ):
-                print(f"\n{index}. {context.get('symbol')}")
-                print("File:", context["file"])
-                print(
-                    "Lines:",
-                    context["start_line"],
-                    "-",
-                    context["end_line"],
-                )
-                print(
-                    "Sources:",
-                    context["retrieval_sources"],
-                )
-                print("RRF Score:", context["rrf_score"])
-
-            assert result["total_contexts"] > 0
-            assert result["semantic_results"] > 0
-
-    finally:
-        github.close()
+    vector_store.search.assert_called_once_with(
+        repository=repository,
+        query_embedding=[0.1, 0.2, 0.3],
+        top_k=10,
+    )
