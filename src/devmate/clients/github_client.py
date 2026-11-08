@@ -3,8 +3,8 @@ from datetime import datetime, timezone
 
 import httpx
 
-from tools.config import settings
-
+from devmate.config import settings
+import logging
 
 class GitHubClient:
     """Client for communicating with the GitHub REST API."""
@@ -64,13 +64,15 @@ class GitHubClient:
         for attempt in range(max_retries + 1):
             response = self.client.get(endpoint)
 
-            print(
-                "GitHub rate limit:",
+            logger = logging.getLogger(__name__)
+
+            logger.debug(
+                "GitHub rate limit: %s",
                 response.headers.get("X-RateLimit-Limit"),
             )
 
-            print(
-                "GitHub remaining:",
+            logger.debug(
+                "GitHub remaining: %s",
                 response.headers.get("X-RateLimit-Remaining"),
             )
 

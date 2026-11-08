@@ -1,5 +1,4 @@
-from tools.github_tools import count_open_issues_across_repositories
-
+from devmate.tools.github_tools import count_open_issues_across_repositories
 
 repositories = [
     ("anushkaSri-04", "AI_Resume_Analyzer"),

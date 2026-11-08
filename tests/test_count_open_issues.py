@@ -1,5 +1,4 @@
-from tools.github_tools import count_open_issues
-
+from devmate.tools.github_tools import count_open_issues
 
 result = count_open_issues(
     "anushkaSri-04",

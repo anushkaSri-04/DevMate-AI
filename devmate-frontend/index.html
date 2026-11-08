@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="DevMate AI: understand your GitHub repository with AI-powered code intelligence.">
+  <meta name="theme-color" content="#101827">
+
+  <title>DevMate AI | Repository Intelligence</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+<!-- SVG ICONS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-grid" viewBox="0 0 24 24">
+    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+  </symbol>
+
+  <symbol id="i-repo" viewBox="0 0 24 24">
+    <circle cx="6" cy="5.5" r="2.5"/>
+    <circle cx="6" cy="18.5" r="2.5"/>
+    <circle cx="18" cy="9" r="2.5"/>
+    <path d="M6 8v8M18 11.5c0 3.5-3 4.5-9.5 5.5"/>
+  </symbol>
+
+  <symbol id="i-spark" viewBox="0 0 24 24">
+    <path d="M11 3l1.9 5.6L18.5 10.5l-5.6 1.9L11 18l-1.9-5.6L3.5 10.5l5.6-1.9z"/>
+    <path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/>
+  </symbol>
+
+  <symbol id="i-code" viewBox="0 0 24 24">
+    <path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/>
+  </symbol>
+
+  <symbol id="i-layers" viewBox="0 0 24 24">
+    <path d="M12 3l9 5-9 5-9-5z"/>
+    <path d="M3 12.5l9 5 9-5M3 17l9 5 9-5"/>
+  </symbol>
+
+  <symbol id="i-link" viewBox="0 0 24 24">
+    <circle cx="6" cy="6" r="2.5"/>
+    <circle cx="18" cy="12" r="2.5"/>
+    <circle cx="6" cy="18" r="2.5"/>
+    <path d="M8.2 7.2l7.6 3.6M8.2 16.8l7.6-3.6"/>
+  </symbol>
+
+  <symbol id="i-clock" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="M12 7v5l3 2"/>
+  </symbol>
+
+  <symbol id="i-arrow-right" viewBox="0 0 24 24">
+    <path d="M5 12h14M13 6l6 6-6 6"/>
+  </symbol>
+
+  <symbol id="i-arrow-ur" viewBox="0 0 24 24">
+    <path d="M7 17L17 7M8 7h9v9"/>
+  </symbol>
+
+  <symbol id="i-plus" viewBox="0 0 24 24">
+    <path d="M12 5v14M5 12h14"/>
+  </symbol>
+
+  <symbol id="i-search" viewBox="0 0 24 24">
+    <circle cx="11" cy="11" r="7"/>
+    <path d="M20 20l-4-4"/>
+  </symbol>
+
+  <symbol id="i-send" viewBox="0 0 24 24">
+    <path d="M12 19V5M6 11l6-6 6 6"/>
+  </symbol>
+
+  <symbol id="i-x" viewBox="0 0 24 24">
+    <path d="M6 6l12 12M18 6L6 18"/>
+  </symbol>
+
+  <symbol id="i-braces" viewBox="0 0 24 24">
+    <path d="M9 4c-2 0-3 1-3 3v3c0 1-1 2-2 2 1 0 2 1 2 2v3c0 2 1 3 3 3M15 4c2 0 3 1 3 3v3c0 1 1 2 2 2-1 0-2 1-2 2v3c0 2-1 3-3 3"/>
+  </symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <a class="brand" href="#main" id="brandLink">
+      <span class="brand-mark">&lt;/&gt;</span>
+      <span class="brand-text">devmate<span class="brand-ai">.ai</span></span>
+    </a>
+
+    <div class="workspace-label">WORKSPACE</div>
+
+    <nav class="nav-list" aria-label="Main navigation">
+
+      <button type="button" class="nav-item active" data-view="overview">
+        <svg class="icon"><use href="#i-grid"/></svg>
+        <span class="nav-label">Overview</span>
+      </button>
+
+      <button type="button" class="nav-item" data-view="repository">
+        <svg class="icon"><use href="#i-repo"/></svg>
+        <span class="nav-label">Repository</span>
+      </button>
+
+      <button type="button" class="nav-item" data-view="assistant">
+        <svg class="icon"><use href="#i-spark"/></svg>
+        <span class="nav-label">Ask DevMate</span>
+      </button>
+
+    </nav>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="workspace-label">CURRENT REPOSITORY</div>
+
+    <div class="repo-mini">
+
+      <span class="repo-mini-icon">
+        <svg class="icon"><use href="#i-repo"/></svg>
+      </span>
+
+      <div class="repo-mini-copy">
+        <strong id="sidebarRepo">No repository</strong>
+        <small id="sidebarBranch">Connect a GitHub repo</small>
+      </div>
+
+      <span class="status-dot" id="sidebarStatus"></span>
+
+    </div>
+
+    <div class="sidebar-bottom">
+
+      <div class="help-card">
+        <svg class="icon help-icon"><use href="#i-spark"/></svg>
+        <strong>Your codebase, understood.</strong>
+        <p>Ask questions and explore your repository with evidence-backed answers.</p>
+      </div>
+
+      <div class="profile-row">
+        <div class="avatar">A</div>
+        <div class="profile-copy">
+          <strong>Developer</strong>
+          <small>Personal workspace</small>
+        </div>
+      </div>
+
+    </div>
+
+  </aside>
+
+  <!-- MAIN AREA -->
+  <div class="main-area">
+
+    <header class="topbar">
+
+      <div class="breadcrumbs">
+        <span>Workspace</span>
+        <span class="crumb-sep">/</span>
+        <strong id="breadcrumbPage">Overview</strong>
+      </div>
+
+      <span class="backend-indicator" id="backendIndicator">
+        <i></i> Checking backend
+      </span>
+
+    </header>
+
+    <main id="main">
+
+      <!-- OVERVIEW -->
+      <section class="page-content" id="overviewView">
+
+        <div class="welcome-row">
+
+          <div>
+            <div class="eyebrow">REPOSITORY INTELLIGENCE</div>
+
+            <h1>
+              Understand your codebase<span class="accent-dot">.</span>
+            </h1>
+
+            <p class="page-subtitle">
+              Your AI-powered space to explore, understand and navigate code.
+            </p>
+          </div>
+
+          <button type="button" class="primary-button" id="openConnect">
+            <svg class="icon"><use href="#i-plus"/></svg>
+            Connect repository
+          </button>
+
+        </div>
+
+        <!-- HERO BANNER -->
+        <section class="connect-banner">
+
+          <div class="banner-orb orb-one"></div>
+          <div class="banner-orb orb-two"></div>
+
+          <div class="banner-content">
+
+            <div class="banner-tag">
+              <svg class="icon"><use href="#i-repo"/></svg>
+              GITHUB INTEGRATION
+            </div>
+
+            <h2>Bring your repository<br>into focus.</h2>
+
+            <p>
+              Connect a GitHub repository to explore its structure,
+              dependencies and code.
+            </p>
+
+            <button type="button" class="banner-button" id="bannerConnect">
+              Connect GitHub repository
+              <svg class="icon"><use href="#i-arrow-right"/></svg>
+            </button>
+
+          </div>
+
+          <div class="banner-visual">
+
+            <div class="visual-window">
+
+              <div class="window-top">
+                <i></i><i></i><i></i>
+                <span>repository.py</span>
+              </div>
+
+              <pre class="code-lines"><code><span class="ln">01</span> <span class="kw">class</span> <span class="fn">Repository</span>:
+<span class="ln">02</span>   <span class="kw">def</span> <span class="fn">analyze</span>(self):
+<span class="ln">03</span>     <span class="kw">return</span> <span class="str">"insights"</span>
+<span class="ln">04</span>
+<span class="ln">05</span> <span class="comment"># Understand your codebase</span></code></pre>
+
+            </div>
+
+            <div class="floating-chip">
+              <svg class="icon"><use href="#i-spark"/></svg>
+              AI code insights
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- METRICS -->
+        <div class="section-heading">
+          <div>
+            <h2>Repository overview</h2>
+            <p>Your connected codebase at a glance</p>
+          </div>
+          <span class="demo-label">LIVE DATA</span>
+        </div>
+
+        <div class="metrics-grid">
+
+          <article class="metric-card">
+            <div class="metric-top">
+              <span>Python files</span>
+              <span class="metric-icon purple">
+                <svg class="icon"><use href="#i-code"/></svg>
+              </span>
+            </div>
+            <strong id="metricFiles">—</strong>
+            <small>Files analyzed</small>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-top">
+              <span>Code chunks</span>
+              <span class="metric-icon blue">
+                <svg class="icon"><use href="#i-layers"/></svg>
+              </span>
+            </div>
+            <strong id="metricChunks">—</strong>
+            <small>Indexed for retrieval</small>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-top">
+              <span>Dependencies</span>
+              <span class="metric-icon green">
+                <svg class="icon"><use href="#i-link"/></svg>
+              </span>
+            </div>
+            <strong id="metricDeps">—</strong>
+            <small>Resolved references</small>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-top">
+              <span>Indexed status</span>
+              <span class="metric-icon amber">
+                <svg class="icon"><use href="#i-clock"/></svg>
+              </span>
+            </div>
+            <strong class="metric-status" id="metricStatus">Not indexed</strong>
+            <small id="metricStatusHint">Connect a repository to begin</small>
+          </article>
+
+        </div>
+
+        <!-- BOTTOM PANELS -->
+        <div class="bottom-grid">
+
+          <section class="panel recent-panel">
+
+            <div class="panel-heading">
+              <div>
+                <h3>Recent activity</h3>
+                <p>Repository operations in this session</p>
+              </div>
+            </div>
+
+            <div class="empty-state" id="activityEmpty">
+              <div class="empty-icon">
+                <svg class="icon"><use href="#i-clock"/></svg>
+              </div>
+              <strong>No activity yet</strong>
+              <p>Your repository analysis and indexing activity will appear here.</p>
+            </div>
+
+            <div class="activity-list" id="activityList"></div>
+
+          </section>
+
+          <section class="panel quick-panel">
+
+            <div class="panel-heading">
+              <div>
+                <h3>Explore with DevMate</h3>
+                <p>Start with a question about your code</p>
+              </div>
+              <svg class="icon sparkle"><use href="#i-spark"/></svg>
+            </div>
+
+            <div class="suggestion-list">
+
+              <button type="button" class="suggestion"
+                data-question="Explain the overall architecture of this repository.">
+                <span class="suggestion-icon">
+                  <svg class="icon"><use href="#i-repo"/></svg>
+                </span>
+                <span class="suggestion-copy">
+                  <strong>Explain the architecture</strong>
+                  <small>Understand the project structure</small>
+                </span>
+                <svg class="icon suggestion-arrow"><use href="#i-arrow-ur"/></svg>
+              </button>
+
+              <button type="button" class="suggestion"
+                data-question="Which files define the main classes and functions?">
+                <span class="suggestion-icon">
+                  <svg class="icon"><use href="#i-braces"/></svg>
+                </span>
+                <span class="suggestion-copy">
+                  <strong>Find key components</strong>
+                  <small>Locate important classes and functions</small>
+                </span>
+                <svg class="icon suggestion-arrow"><use href="#i-arrow-ur"/></svg>
+              </button>
+
+              <button type="button" class="suggestion"
+                data-question="Trace how the main components depend on each other.">
+                <span class="suggestion-icon">
+                  <svg class="icon"><use href="#i-link"/></svg>
+                </span>
+                <span class="suggestion-copy">
+                  <strong>Trace dependencies</strong>
+                  <small>Follow relationships across files</small>
+                </span>
+                <svg class="icon suggestion-arrow"><use href="#i-arrow-ur"/></svg>
+              </button>
+
+            </div>
+
+          </section>
+
+        </div>
+
+      </section>
+
+      <!-- REPOSITORY PAGE -->
+      <section class="page-content hidden" id="repositoryView">
+
+        <div class="welcome-row">
+
+          <div>
+            <div class="eyebrow">YOUR CODEBASE</div>
+            <h1>Repository<span class="accent-dot">.</span></h1>
+            <p class="page-subtitle">
+              Connect and inspect a GitHub repository.
+            </p>
+          </div>
+
+          <button type="button" class="primary-button" id="repoConnect">
+            <svg class="icon"><use href="#i-plus"/></svg>
+            Connect repository
+          </button>
+
+        </div>
+
+        <div class="panel repo-detail-panel" id="repoDetailEmpty">
+
+          <div class="empty-state">
+            <div class="empty-icon">
+              <svg class="icon"><use href="#i-repo"/></svg>
+            </div>
+
+            <strong>No repository connected</strong>
+            <p>Connect a GitHub repository to view its details and analysis.</p>
+
+            <button type="button" class="primary-button" id="emptyConnect">
+              Connect repository
+            </button>
+          </div>
+
+        </div>
+
+        <div class="panel repo-detail-panel hidden" id="repoDetail">
+
+          <div class="repo-detail-head">
+
+            <div class="repo-large-icon">
+              <svg class="icon"><use href="#i-repo"/></svg>
+            </div>
+
+            <div>
+              <h2 id="detailRepoName">Repository</h2>
+              <p id="detailRepoUrl">GitHub repository</p>
+            </div>
+
+            <span class="connected-pill">
+              <i></i> Connected
+            </span>
+
+          </div>
+
+          <dl class="repo-detail-stats">
+
+            <div>
+              <dt>Python files</dt>
+              <dd id="detailFiles">—</dd>
+            </div>
+
+            <div>
+              <dt>Code chunks</dt>
+              <dd id="detailChunks">—</dd>
+            </div>
+
+            <div>
+              <dt>Dependencies</dt>
+              <dd id="detailDeps">—</dd>
+            </div>
+
+          </dl>
+
+          <div class="repo-actions">
+
+            <button type="button" class="secondary-button" id="analyzeButton">
+              Analyze repository
+            </button>
+
+            <button type="button" class="primary-button" id="indexButton">
+              Index code
+            </button>
+
+            <button type="button" class="ghost-button" id="disconnectButton">
+              Disconnect
+            </button>
+
+          </div>
+
+          <p class="preview-note" id="previewNote" role="status">
+            Connect your backend to begin repository analysis.
+          </p>
+
+        </div>
+
+      </section>
+
+      <!-- ASSISTANT PAGE -->
+      <section class="page-content hidden" id="assistantView">
+
+        <div class="welcome-row assistant-title">
+
+          <div>
+            <div class="eyebrow">CODEBASE Q&amp;A</div>
+            <h1>Ask DevMate<span class="accent-dot">.</span></h1>
+            <p class="page-subtitle">
+              Ask questions and get answers grounded in your repository.
+            </p>
+          </div>
+
+          <span class="preview-pill">AI ASSISTANT</span>
+
+        </div>
+
+        <div class="assistant-layout">
+
+          <!-- CHAT -->
+          <section class="panel chat-panel">
+
+            <div class="chat-header">
+
+              <div class="assistant-avatar">
+                <svg class="icon"><use href="#i-spark"/></svg>
+              </div>
+
+              <div>
+                <strong>DevMate assistant</strong>
+                <small><i></i> Ready to explore your code</small>
+              </div>
+
+              <button type="button" class="clear-chat" id="clearChat">
+                Clear chat
+              </button>
+
+            </div>
+
+            <div class="chat-messages" id="chatMessages"
+              role="log" aria-live="polite">
+
+              <div class="welcome-message" id="welcomeMessage">
+
+                <svg class="icon welcome-sparkle">
+                  <use href="#i-spark"/>
+                </svg>
+
+                <h2>What would you like to understand?</h2>
+
+                <p>
+                  Ask about functions, classes, imports, architecture
+                  or how code flows across files.
+                </p>
+
+                <div class="chat-prompts">
+
+                  <button type="button"
+                    data-question="Explain the overall architecture of this repository.">
+                    Explain the repository architecture
+                    <svg class="icon"><use href="#i-arrow-ur"/></svg>
+                  </button>
+
+                  <button type="button"
+                    data-question="How does authentication work in this project?">
+                    How does authentication work?
+                    <svg class="icon"><use href="#i-arrow-ur"/></svg>
+                  </button>
+
+                  <button type="button"
+                    data-question="Find the class definitions in the repository.">
+                    Find the main classes
+                    <svg class="icon"><use href="#i-arrow-ur"/></svg>
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <form class="chat-composer" id="chatForm">
+
+              <label for="questionInput" class="sr-only">
+                Ask a question about your codebase
+              </label>
+
+              <textarea
+                id="questionInput"
+                rows="1"
+                maxlength="5000"
+                placeholder="Ask anything about your codebase..."
+                required></textarea>
+
+              <div class="composer-bottom">
+                <span>Enter to send · Shift+Enter for a new line</span>
+
+                <button type="submit" id="sendButton" aria-label="Send question">
+                  <svg class="icon"><use href="#i-send"/></svg>
+                </button>
+              </div>
+
+            </form>
+
+          </section>
+
+          <!-- EVIDENCE PANEL -->
+          <aside class="panel evidence-panel">
+
+            <div class="evidence-heading">
+
+              <span>
+                <svg class="icon"><use href="#i-search"/></svg>
+              </span>
+
+              <div>
+                <h3>Source evidence</h3>
+                <p>Supporting code references</p>
+              </div>
+
+            </div>
+
+            <div class="evidence-empty" id="evidenceEmpty">
+
+              <svg class="icon evidence-icon">
+                <use href="#i-layers"/>
+              </svg>
+
+              <strong>No evidence yet</strong>
+
+              <p>
+                Source files and line references used in an answer
+                will appear here.
+              </p>
+
+            </div>
+
+            <div id="evidenceList" class="evidence-list"></div>
+
+          </aside>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <span>DevMate AI <b>·</b> Repository intelligence</span>
+      <span>Built for developers, with evidence.</span>
+    </footer>
+
+  </div>
+
+</div>
+
+<!-- CONNECT REPOSITORY MODAL -->
+<div class="modal-backdrop hidden" id="connectModal">
+
+  <div class="modal" role="dialog" aria-modal="true"
+    aria-labelledby="modalTitle">
+
+    <button type="button" class="modal-close" id="closeModal"
+      aria-label="Close dialog">
+      <svg class="icon"><use href="#i-x"/></svg>
+    </button>
+
+    <div class="modal-github">
+      <svg class="icon"><use href="#i-repo"/></svg>
+    </div>
+
+    <div class="eyebrow">GITHUB INTEGRATION</div>
+
+    <h2 id="modalTitle">Connect a repository</h2>
+
+    <p>
+      Enter the owner and repository name to add a codebase to your workspace.
+    </p>
+
+    <form id="connectForm">
+
+      <label for="repoOwner">GitHub owner</label>
+
+      <input
+        id="repoOwner"
+        name="owner"
+        placeholder="e.g. octocat"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        required>
+
+      <label for="repoName">Repository name</label>
+
+      <input
+        id="repoName"
+        name="repo"
+        placeholder="e.g. hello-world"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        required>
+
+      <div class="form-error" id="formError" role="alert"></div>
+
+      <button class="primary-button modal-submit" type="submit"
+        id="connectSubmit">
+
+        Connect repository
+
+        <svg class="icon"><use href="#i-arrow-right"/></svg>
+
+      </button>
+
+    </form>
+
+    <small class="modal-footnote">
+      Repository access is verified by the DevMate backend.
+      Your GitHub credentials remain on the server.
+    </small>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="./app.js" defer></script>
+
+</body>
+</html>

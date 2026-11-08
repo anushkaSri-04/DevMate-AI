@@ -1,7 +1,7 @@
 import httpx
 import respx
 
-from tools.github_client import GitHubClient
+from devmate.clients.github_client import GitHubClient
 
 
 @respx.mock

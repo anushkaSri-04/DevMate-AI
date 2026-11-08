@@ -1,8 +1,8 @@
 """Entry point for MCP DevMate AI."""
 
 from src.devmate.issue_tools import (
-    count_open_issues,
     count_closed_issues,
+    count_open_issues,
 )
 
 

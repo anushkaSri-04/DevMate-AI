@@ -1,6 +1,6 @@
 import pytest
 
-from tools.github_tools import list_issues
+from devmate.tools.github_tools import list_issues
 
 
 def test_invalid_state():

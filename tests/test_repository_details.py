@@ -1,5 +1,4 @@
-from tools.github_tools import get_repository_details
-
+from devmate.tools.github_tools import get_repository_details
 
 repository = get_repository_details(
     "anushkaSri-04",
