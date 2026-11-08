@@ -17,8 +17,11 @@ jobs:
     name: Run Python Tests
     runs-on: ubuntu-latest
 
+    permissions:
+    contents: read
+
     env:
-      GITHUB_TOKEN: test-token
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GEMINI_API_KEY: ""
 
     steps:
