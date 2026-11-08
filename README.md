@@ -478,7 +478,7 @@ Container verification: both images built, both containers started, and `/api/he
 
 ## License
 
-Add your preferred license here (for example MIT).
+MIT
 
 ## Author
 
