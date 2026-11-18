@@ -1,0 +1,151 @@
+id,query,method,gold_sections,retrieved,recall@5,recall@10,recall@20,mrr@10,ndcg@10
+1,How does DevMate combine lexical and semantic retrieval with reciprocal rank fusion?,lexical,3,20,0.0,0.0,0.0,0.0,0.0
+1,How does DevMate combine lexical and semantic retrieval with reciprocal rank fusion?,semantic,3,20,1.0,1.0,1.0,1.0,0.765361
+1,How does DevMate combine lexical and semantic retrieval with reciprocal rank fusion?,hybrid_rrf,3,20,1.0,1.0,1.0,0.333333,0.436747
+2,How does DevMate generate a query embedding and search ChromaDB?,lexical,2,20,0.5,0.5,1.0,1.0,0.613147
+2,How does DevMate generate a query embedding and search ChromaDB?,semantic,2,20,0.5,1.0,1.0,0.2,0.421773
+2,How does DevMate generate a query embedding and search ChromaDB?,hybrid_rrf,2,20,0.5,0.5,1.0,1.0,0.613147
+3,How are duplicate code contexts merged from lexical and semantic search?,lexical,3,20,0.0,0.0,0.0,0.0,0.0
+3,How are duplicate code contexts merged from lexical and semantic search?,semantic,3,19,1.0,1.0,1.0,0.5,0.679731
+3,How are duplicate code contexts merged from lexical and semantic search?,hybrid_rrf,3,20,0.0,0.666667,1.0,0.111111,0.141267
+4,How does DevMate rank and limit the final retrieved contexts?,lexical,2,20,0.0,0.0,0.0,0.0,0.0
+4,How does DevMate rank and limit the final retrieved contexts?,semantic,2,20,1.0,1.0,1.0,0.5,0.693426
+4,How does DevMate rank and limit the final retrieved contexts?,hybrid_rrf,2,20,0.5,1.0,1.0,0.25,0.482476
+5,How are duplicate chunk IDs handled before storing embeddings?,lexical,1,20,0.0,1.0,1.0,0.111111,0.30103
+5,How are duplicate chunk IDs handled before storing embeddings?,semantic,1,20,1.0,1.0,1.0,0.5,0.63093
+5,How are duplicate chunk IDs handled before storing embeddings?,hybrid_rrf,1,20,1.0,1.0,1.0,0.333333,0.5
+6,How does DevMate create repository-specific ChromaDB collection names?,lexical,1,20,1.0,1.0,1.0,0.25,0.430677
+6,How does DevMate create repository-specific ChromaDB collection names?,semantic,1,19,1.0,1.0,1.0,0.5,0.63093
+6,How does DevMate create repository-specific ChromaDB collection names?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+7,What does semantic search return when the vector collection is empty?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+7,What does semantic search return when the vector collection is empty?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+7,What does semantic search return when the vector collection is empty?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+8,How does DevMate convert vector distance into a similarity score?,lexical,1,20,1.0,1.0,1.0,0.5,0.63093
+8,How does DevMate convert vector distance into a similarity score?,semantic,1,20,0.0,0.0,1.0,0.0,0.0
+8,How does DevMate convert vector distance into a similarity score?,hybrid_rrf,1,20,1.0,1.0,1.0,0.25,0.430677
+9,How does lexical retrieval prioritize production code over test files?,lexical,2,20,0.5,0.5,0.5,1.0,0.613147
+9,How does lexical retrieval prioritize production code over test files?,semantic,2,20,1.0,1.0,1.0,1.0,1.0
+9,How does lexical retrieval prioritize production code over test files?,hybrid_rrf,2,20,1.0,1.0,1.0,1.0,0.877215
+10,How are source snippets extracted with surrounding lines?,lexical,1,20,1.0,1.0,1.0,0.5,0.63093
+10,How are source snippets extracted with surrounding lines?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+10,How are source snippets extracted with surrounding lines?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+11,How does DevMate score matching function and class definitions?,lexical,1,20,0.0,0.0,0.0,0.0,0.0
+11,How does DevMate score matching function and class definitions?,semantic,1,19,0.0,0.0,0.0,0.0,0.0
+11,How does DevMate score matching function and class definitions?,hybrid_rrf,1,20,0.0,0.0,0.0,0.0,0.0
+12,How are cross-file references collected for a symbol?,lexical,1,20,0.0,0.0,0.0,0.0,0.0
+12,How are cross-file references collected for a symbol?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+12,How are cross-file references collected for a symbol?,hybrid_rrf,1,20,0.0,1.0,1.0,0.125,0.315465
+13,How are related source files found using module dependencies?,lexical,1,20,1.0,1.0,1.0,0.2,0.386853
+13,How are related source files found using module dependencies?,semantic,1,20,1.0,1.0,1.0,0.5,0.63093
+13,How are related source files found using module dependencies?,hybrid_rrf,1,20,1.0,1.0,1.0,0.5,0.63093
+14,How is the structured code context package built for repository Q&A?,lexical,1,20,0.0,1.0,1.0,0.1,0.289065
+14,How is the structured code context package built for repository Q&A?,semantic,1,19,1.0,1.0,1.0,1.0,1.0
+14,How is the structured code context package built for repository Q&A?,hybrid_rrf,1,20,1.0,1.0,1.0,0.5,0.63093
+15,How does DevMate find keyword matches and rank code contexts?,lexical,2,20,0.0,0.0,0.0,0.0,0.0
+15,How does DevMate find keyword matches and rank code contexts?,semantic,2,19,1.0,1.0,1.0,0.5,0.386853
+15,How does DevMate find keyword matches and rank code contexts?,hybrid_rrf,2,20,1.0,1.0,1.0,0.25,0.264068
+16,How are code embeddings validated before being stored in ChromaDB?,lexical,2,20,0.0,0.0,0.0,0.0,0.0
+16,How are code embeddings validated before being stored in ChromaDB?,semantic,2,20,1.0,1.0,1.0,1.0,0.81753
+16,How are code embeddings validated before being stored in ChromaDB?,hybrid_rrf,2,20,1.0,1.0,1.0,0.5,0.386853
+17,How is the HybridRetriever initialized with injectable embedding and vector-store dependencies?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+17,How is the HybridRetriever initialized with injectable embedding and vector-store dependencies?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+17,How is the HybridRetriever initialized with injectable embedding and vector-store dependencies?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+18,What happens when a retrieval query is empty or contains only whitespace?,lexical,1,20,0.0,0.0,0.0,0.0,0.0
+18,What happens when a retrieval query is empty or contains only whitespace?,semantic,1,20,1.0,1.0,1.0,0.2,0.386853
+18,What happens when a retrieval query is empty or contains only whitespace?,hybrid_rrf,1,20,0.0,1.0,1.0,0.1,0.289065
+19,How does HybridRetriever determine the repository identifier when none is passed explicitly?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+19,How does HybridRetriever determine the repository identifier when none is passed explicitly?,semantic,1,20,0.0,0.0,1.0,0.0,0.0
+19,How does HybridRetriever determine the repository identifier when none is passed explicitly?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+20,Why does hybrid retrieval require a repository identifier?,lexical,1,20,1.0,1.0,1.0,0.5,0.63093
+20,Why does hybrid retrieval require a repository identifier?,semantic,1,20,1.0,1.0,1.0,0.5,0.63093
+20,Why does hybrid retrieval require a repository identifier?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+21,How many lexical contexts are requested before the RRF merge?,lexical,1,20,0.0,0.0,0.0,0.0,0.0
+21,How many lexical contexts are requested before the RRF merge?,semantic,1,20,1.0,1.0,1.0,0.5,0.63093
+21,How many lexical contexts are requested before the RRF merge?,hybrid_rrf,1,20,1.0,1.0,1.0,0.333333,0.5
+22,How does the retriever create embeddings for natural-language questions?,lexical,1,20,1.0,1.0,1.0,0.333333,0.5
+22,How does the retriever create embeddings for natural-language questions?,semantic,1,20,1.0,1.0,1.0,0.25,0.430677
+22,How does the retriever create embeddings for natural-language questions?,hybrid_rrf,1,20,1.0,1.0,1.0,0.5,0.63093
+23,Which metadata fields are required to turn a semantic vector result into a source-code context?,lexical,1,20,0.0,0.0,0.0,0.0,0.0
+23,Which metadata fields are required to turn a semantic vector result into a source-code context?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+23,Which metadata fields are required to turn a semantic vector result into a source-code context?,hybrid_rrf,1,20,0.0,0.0,1.0,0.0,0.0
+24,How does hybrid retrieval recover source code for a semantic match?,lexical,1,20,1.0,1.0,1.0,0.2,0.386853
+24,How does hybrid retrieval recover source code for a semantic match?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+24,How does hybrid retrieval recover source code for a semantic match?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+25,What happens when a semantic result points to a file that is absent from the supplied source files?,lexical,1,20,0.0,0.0,0.0,0.0,0.0
+25,What happens when a semantic result points to a file that is absent from the supplied source files?,semantic,1,20,1.0,1.0,1.0,0.25,0.430677
+25,What happens when a semantic result points to a file that is absent from the supplied source files?,hybrid_rrf,1,20,0.0,1.0,1.0,0.125,0.315465
+26,"How are semantic similarity, vector distance and chunk ID preserved in a retrieved context?",lexical,1,20,0.0,0.0,0.0,0.0,0.0
+26,"How are semantic similarity, vector distance and chunk ID preserved in a retrieved context?",semantic,1,20,1.0,1.0,1.0,1.0,1.0
+26,"How are semantic similarity, vector distance and chunk ID preserved in a retrieved context?",hybrid_rrf,1,20,1.0,1.0,1.0,0.333333,0.5
+27,How does RRF assign a score to a lexical result based on its rank?,lexical,1,20,0.0,0.0,0.0,0.0,0.0
+27,How does RRF assign a score to a lexical result based on its rank?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+27,How does RRF assign a score to a lexical result based on its rank?,hybrid_rrf,1,20,1.0,1.0,1.0,0.25,0.430677
+28,How does VectorStore initialize its persistent ChromaDB directory?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+28,How does VectorStore initialize its persistent ChromaDB directory?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+28,How does VectorStore initialize its persistent ChromaDB directory?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+29,How does VectorStore normalize repository names and avoid collection-name collisions?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+29,How does VectorStore normalize repository names and avoid collection-name collisions?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+29,How does VectorStore normalize repository names and avoid collection-name collisions?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+30,How does VectorStore create or retrieve a repository-specific ChromaDB collection?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+30,How does VectorStore create or retrieve a repository-specific ChromaDB collection?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+30,How does VectorStore create or retrieve a repository-specific ChromaDB collection?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+31,Which fields must every stored code chunk contain?,lexical,1,20,0.0,1.0,1.0,0.166667,0.356207
+31,Which fields must every stored code chunk contain?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+31,Which fields must every stored code chunk contain?,hybrid_rrf,1,20,1.0,1.0,1.0,0.5,0.63093
+32,"How does VectorStore reject chunks with empty IDs, text or embeddings?",lexical,1,20,1.0,1.0,1.0,1.0,1.0
+32,"How does VectorStore reject chunks with empty IDs, text or embeddings?",semantic,1,20,1.0,1.0,1.0,0.5,0.63093
+32,"How does VectorStore reject chunks with empty IDs, text or embeddings?",hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+33,How does VectorStore validate ChromaDB metadata values?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+33,How does VectorStore validate ChromaDB metadata values?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+33,How does VectorStore validate ChromaDB metadata values?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+34,What happens when add_chunks receives an empty list?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+34,What happens when add_chunks receives an empty list?,semantic,1,19,1.0,1.0,1.0,1.0,1.0
+34,What happens when add_chunks receives an empty list?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+35,How does VectorStore validate that a chunk belongs to the target repository?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+35,How does VectorStore validate that a chunk belongs to the target repository?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+35,How does VectorStore validate that a chunk belongs to the target repository?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+36,Why must all embeddings in a batch have the same dimensions?,lexical,1,20,0.0,0.0,0.0,0.0,0.0
+36,Why must all embeddings in a batch have the same dimensions?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+36,Why must all embeddings in a batch have the same dimensions?,hybrid_rrf,1,20,1.0,1.0,1.0,0.333333,0.5
+37,How does VectorStore remove duplicate chunk IDs before upserting?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+37,How does VectorStore remove duplicate chunk IDs before upserting?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+37,How does VectorStore remove duplicate chunk IDs before upserting?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+38,How does VectorStore split large chunk batches before writing them to ChromaDB?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+38,How does VectorStore split large chunk batches before writing them to ChromaDB?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+38,How does VectorStore split large chunk batches before writing them to ChromaDB?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+39,How does context retrieval normalize search terms?,lexical,1,20,0.0,1.0,1.0,0.1,0.289065
+39,How does context retrieval normalize search terms?,semantic,1,20,1.0,1.0,1.0,0.2,0.386853
+39,How does context retrieval normalize search terms?,hybrid_rrf,1,20,1.0,1.0,1.0,0.333333,0.5
+40,How does context retrieval build a map from repository paths to source contents?,lexical,1,20,1.0,1.0,1.0,0.333333,0.5
+40,How does context retrieval build a map from repository paths to source contents?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+40,How does context retrieval build a map from repository paths to source contents?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+41,How does context retrieval identify whether a file is a test file?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+41,How does context retrieval identify whether a file is a test file?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+41,How does context retrieval identify whether a file is a test file?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+42,What words are excluded when extracting meaningful terms from a natural-language query?,lexical,1,20,1.0,1.0,1.0,0.5,0.63093
+42,What words are excluded when extracting meaningful terms from a natural-language query?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+42,What words are excluded when extracting meaningful terms from a natural-language query?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+43,How does extract_source_context calculate padded source line boundaries?,lexical,1,20,1.0,1.0,1.0,1.0,1.0
+43,How does extract_source_context calculate padded source line boundaries?,semantic,1,20,1.0,1.0,1.0,0.5,0.63093
+43,How does extract_source_context calculate padded source line boundaries?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+44,What information is included in a generated source context record?,lexical,1,20,1.0,1.0,1.0,0.5,0.63093
+44,What information is included in a generated source context record?,semantic,1,20,0.0,1.0,1.0,0.125,0.315465
+44,What information is included in a generated source context record?,hybrid_rrf,1,20,1.0,1.0,1.0,0.25,0.430677
+45,How does context retrieval create a standard context record from a source range?,lexical,1,20,1.0,1.0,1.0,0.2,0.386853
+45,How does context retrieval create a standard context record from a source range?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+45,How does context retrieval create a standard context record from a source range?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+46,How does context retrieval deduplicate identical file and line-range contexts?,lexical,1,20,1.0,1.0,1.0,0.25,0.430677
+46,How does context retrieval deduplicate identical file and line-range contexts?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+46,How does context retrieval deduplicate identical file and line-range contexts?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+47,How are exact symbol definitions retrieved from AST analysis?,lexical,1,20,0.0,1.0,1.0,0.142857,0.333333
+47,How are exact symbol definitions retrieved from AST analysis?,semantic,1,20,1.0,1.0,1.0,0.5,0.63093
+47,How are exact symbol definitions retrieved from AST analysis?,hybrid_rrf,1,20,1.0,1.0,1.0,0.5,0.63093
+48,How does reference retrieval distinguish resolved and unresolved references?,lexical,1,20,1.0,1.0,1.0,0.5,0.63093
+48,How does reference retrieval distinguish resolved and unresolved references?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+48,How does reference retrieval distinguish resolved and unresolved references?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0
+49,How does import-context retrieval locate and extract import statements?,lexical,1,20,0.0,0.0,1.0,0.0,0.0
+49,How does import-context retrieval locate and extract import statements?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+49,How does import-context retrieval locate and extract import statements?,hybrid_rrf,1,20,1.0,1.0,1.0,0.333333,0.5
+50,How does related-file retrieval use module dependencies and cross-file references?,lexical,1,20,1.0,1.0,1.0,0.2,0.386853
+50,How does related-file retrieval use module dependencies and cross-file references?,semantic,1,20,1.0,1.0,1.0,1.0,1.0
+50,How does related-file retrieval use module dependencies and cross-file references?,hybrid_rrf,1,20,1.0,1.0,1.0,1.0,1.0

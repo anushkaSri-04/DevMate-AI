@@ -1,0 +1,29 @@
+{
+  "repository": "anushkaSri-04/DevMate-AI",
+  "questions": 50,
+  "indexed_chunks": 235,
+  "matching_rule": "same file and at least one overlapping line; each gold section counted once",
+  "metrics": {
+    "lexical": {
+      "recall@5": 0.58,
+      "recall@10": 0.68,
+      "recall@20": 0.71,
+      "mrr@10": 0.4317,
+      "ndcg@10": 0.4798
+    },
+    "semantic": {
+      "recall@5": 0.91,
+      "recall@10": 0.94,
+      "recall@20": 0.98,
+      "mrr@10": 0.7345,
+      "ndcg@10": 0.7753
+    },
+    "hybrid_rrf": {
+      "recall@5": 0.86,
+      "recall@10": 0.9433,
+      "recall@20": 0.98,
+      "mrr@10": 0.6609,
+      "ndcg@10": 0.7114
+    }
+  }
+}

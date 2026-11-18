@@ -1,0 +1,656 @@
+[
+  {
+    "id": 1,
+    "query": "How does DevMate combine lexical and semantic retrieval with reciprocal rank fusion?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 88,
+        "end_line": 95,
+        "anchor": "build_context_package("
+      },
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 101,
+        "end_line": 107,
+        "anchor": "embed_query(query)"
+      },
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 176,
+        "end_line": 215,
+        "anchor": "_reciprocal_rank("
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "query": "How does DevMate generate a query embedding and search ChromaDB?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 101,
+        "end_line": 107,
+        "anchor": "embed_query(query)"
+      },
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 179,
+        "end_line": 205,
+        "anchor": "collection.query("
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "query": "How are duplicate code contexts merged from lexical and semantic search?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 26,
+        "end_line": 34,
+        "anchor": "def _context_key("
+      },
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 115,
+        "end_line": 125,
+        "anchor": "source_contexts[key]"
+      },
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 189,
+        "end_line": 215,
+        "anchor": "retrieval_sources"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "query": "How does DevMate rank and limit the final retrieved contexts?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 222,
+        "end_line": 232,
+        "anchor": "combined_contexts.sort("
+      },
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 600,
+        "end_line": 613,
+        "anchor": "contexts.sort("
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "query": "How are duplicate chunk IDs handled before storing embeddings?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 145,
+        "end_line": 176,
+        "anchor": "unique_chunks ="
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "query": "How does DevMate create repository-specific ChromaDB collection names?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 30,
+        "end_line": 52,
+        "anchor": "def _get_collection_name("
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "query": "What does semantic search return when the vector collection is empty?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 179,
+        "end_line": 205,
+        "anchor": "collection.count() == 0"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "query": "How does DevMate convert vector distance into a similarity score?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 208,
+        "end_line": 232,
+        "anchor": "\"similarity\": max("
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "query": "How does lexical retrieval prioritize production code over test files?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 60,
+        "end_line": 83,
+        "anchor": "def _adjust_score("
+      },
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 497,
+        "end_line": 507,
+        "anchor": "_adjust_score("
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "query": "How are source snippets extracted with surrounding lines?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 128,
+        "end_line": 160,
+        "anchor": "def extract_source_context("
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "query": "How does DevMate score matching function and class definitions?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 480,
+        "end_line": 510,
+        "anchor": "base_score = 8 if is_exact else 5"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "query": "How are cross-file references collected for a symbol?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 276,
+        "end_line": 333,
+        "anchor": "def retrieve_reference_context("
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "query": "How are related source files found using module dependencies?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 376,
+        "end_line": 439,
+        "anchor": "def retrieve_related_file_context("
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "query": "How is the structured code context package built for repository Q&A?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 665,
+        "end_line": 690,
+        "anchor": "def build_context_package("
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "query": "How does DevMate find keyword matches and rank code contexts?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 559,
+        "end_line": 582,
+        "anchor": "search_code_keywords("
+      },
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 600,
+        "end_line": 613,
+        "anchor": "contexts.sort("
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "query": "How are code embeddings validated before being stored in ChromaDB?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 67,
+        "end_line": 101,
+        "anchor": "def _validate_chunk("
+      },
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 104,
+        "end_line": 142,
+        "anchor": "embedding_dimensions ="
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "query": "How is the HybridRetriever initialized with injectable embedding and vector-store dependencies?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 13,
+        "end_line": 24,
+        "anchor": "embedding_service or EmbeddingService()"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "query": "What happens when a retrieval query is empty or contains only whitespace?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 65,
+        "end_line": 75,
+        "anchor": "insufficient_context"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "query": "How does HybridRetriever determine the repository identifier when none is passed explicitly?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 77,
+        "end_line": 82,
+        "anchor": "analysis.get(\"repository\")"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "query": "Why does hybrid retrieval require a repository identifier?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 77,
+        "end_line": 82,
+        "anchor": "Repository identifier is required"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "query": "How many lexical contexts are requested before the RRF merge?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 88,
+        "end_line": 95,
+        "anchor": "max_contexts=max_contexts * 2"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "query": "How does the retriever create embeddings for natural-language questions?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 101,
+        "end_line": 107,
+        "anchor": "embed_query(query)"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "query": "Which metadata fields are required to turn a semantic vector result into a source-code context?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 134,
+        "end_line": 146,
+        "anchor": "start_line is None"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "query": "How does hybrid retrieval recover source code for a semantic match?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 148,
+        "end_line": 154,
+        "anchor": "extract_source_context("
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "query": "What happens when a semantic result points to a file that is absent from the supplied source files?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 148,
+        "end_line": 157,
+        "anchor": "if source is None"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "query": "How are semantic similarity, vector distance and chunk ID preserved in a retrieved context?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 159,
+        "end_line": 168,
+        "anchor": "semantic_similarity"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "query": "How does RRF assign a score to a lexical result based on its rank?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/hybrid_retrieval.py",
+        "start_line": 176,
+        "end_line": 187,
+        "anchor": "_reciprocal_rank(rank, rrf_k)"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "query": "How does VectorStore initialize its persistent ChromaDB directory?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 15,
+        "end_line": 28,
+        "anchor": "PersistentClient("
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "query": "How does VectorStore normalize repository names and avoid collection-name collisions?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 30,
+        "end_line": 52,
+        "anchor": "repository_hash"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "query": "How does VectorStore create or retrieve a repository-specific ChromaDB collection?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 54,
+        "end_line": 65,
+        "anchor": "get_or_create_collection("
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "query": "Which fields must every stored code chunk contain?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 67,
+        "end_line": 83,
+        "anchor": "required_fields"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "query": "How does VectorStore reject chunks with empty IDs, text or embeddings?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 84,
+        "end_line": 92,
+        "anchor": "Chunk embedding cannot be empty."
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "query": "How does VectorStore validate ChromaDB metadata values?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 93,
+        "end_line": 102,
+        "anchor": "metadata values must be scalar"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "query": "What happens when add_chunks receives an empty list?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 104,
+        "end_line": 114,
+        "anchor": "if not chunks"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "query": "How does VectorStore validate that a chunk belongs to the target repository?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 118,
+        "end_line": 132,
+        "anchor": "Chunk repository does not match target collection."
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "query": "Why must all embeddings in a batch have the same dimensions?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 133,
+        "end_line": 143,
+        "anchor": "embedding_dimensions"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "query": "How does VectorStore remove duplicate chunk IDs before upserting?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 145,
+        "end_line": 176,
+        "anchor": "unique_chunks ="
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "query": "How does VectorStore split large chunk batches before writing them to ChromaDB?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/vector_store.py",
+        "start_line": 153,
+        "end_line": 175,
+        "anchor": "for start in range(0, len(chunks_to_store), batch_size):"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "query": "How does context retrieval normalize search terms?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 19,
+        "end_line": 21,
+        "anchor": "value.strip().lower()"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "query": "How does context retrieval build a map from repository paths to source contents?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 23,
+        "end_line": 32,
+        "anchor": "item[\"path\"]"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "query": "How does context retrieval identify whether a file is a test file?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 60,
+        "end_line": 71,
+        "anchor": "filename.startswith(\"test_\")"
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "query": "What words are excluded when extracting meaningful terms from a natural-language query?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 86,
+        "end_line": 121,
+        "anchor": "ignored_words ="
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "query": "How does extract_source_context calculate padded source line boundaries?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 128,
+        "end_line": 160,
+        "anchor": "start = max(1, start_line - padding)"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "query": "What information is included in a generated source context record?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 148,
+        "end_line": 160,
+        "anchor": "\"snippet\": snippet"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "query": "How does context retrieval create a standard context record from a source range?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 183,
+        "end_line": 209,
+        "anchor": "\"type\": context_type"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "query": "How does context retrieval deduplicate identical file and line-range contexts?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 212,
+        "end_line": 234,
+        "anchor": "unique[key] = context"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "query": "How are exact symbol definitions retrieved from AST analysis?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 241,
+        "end_line": 269,
+        "anchor": "search_symbols("
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "query": "How does reference retrieval distinguish resolved and unresolved references?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 276,
+        "end_line": 333,
+        "anchor": "\"resolved_reference\""
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "query": "How does import-context retrieval locate and extract import statements?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 340,
+        "end_line": 369,
+        "anchor": "search_imports(analysis, query)"
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "query": "How does related-file retrieval use module dependencies and cross-file references?",
+    "relevant_sections": [
+      {
+        "file": "src/devmate/services/context_retrieval.py",
+        "start_line": 376,
+        "end_line": 414,
+        "anchor": "related_paths.add(target)"
+      }
+    ]
+  }
+]
